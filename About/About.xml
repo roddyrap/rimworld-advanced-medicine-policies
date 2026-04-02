@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<packageId>roddyrap.advancedmedicinepolicies</packageId>
+	<name>Advanced Medicine Policies</name>
+	<author>Roddy Rappaport</author>
+	<modVersion>0.1</modVersion>
+	<supportedVersions>
+		<li>1.6</li>
+	</supportedVersions>
+
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+		</li>
+	</modDependencies>
+
+	<incompatibleWith>
+		<!-- <li>username.modname</li> -->
+	</incompatibleWith>
+
+	<loadBefore>
+		<!-- <li>username.modname</li> -->
+	</loadBefore>
+	
+	<loadAfter>
+		<!-- <li>username.modname</li> -->
+	</loadAfter>
+
+	<description>Have you ever ran out of medicine becuase your doctor wasted all of it on cosmetics?
+Did one of your pawns ever die because you resticted them to herbal medicine long ago and forgot to change it?
+
+No longer!
+
+This mod adds additional medicine policies that will allow you to always use the correct medicine
+automatically (After you configure the rules). You will not need to manually change the preffered
+medicine for a pawn each time anymore.
+
+This mod allows you to choose different preffered medicines based on combinations from two categories:
+- Pawn Allegiance: You can choose policies for colonists, prisoners, slaves, animals and more differently.
+- Pawn Conditions: You can choose policies for surgeris, life-threatening injuries, bleeding out, immunity disease, chronic disease, bruises-only, self-tend.
+
+Combine these values to create rules. Rules are always matched from the first (top) one to the
+bottom one. Order matters!
+
+NOTE: The allegiance selector for non-colonist pawns/animals is not guaranteed to work properly and may clash with the default medicine preferences for the relevant categories.
+
+The self-tend icon is used with permission from Jaxe's highly recommended RimHUD mod.</description>
+</ModMetaData>
