@@ -3,6 +3,7 @@
 	<packageId>roddyrap.advancedmedicinepolicies</packageId>
 	<name>Advanced Medicine Policies</name>
 	<author>Roddy Rappaport</author>
+	<url>https://steamcommunity.com/sharedfiles/filedetails/?id=3701592043</url>
 	<modVersion>0.1</modVersion>
 	<supportedVersions>
 		<li>1.6</li>
@@ -47,5 +48,7 @@ bottom one. Order matters!
 
 NOTE: The allegiance selector for non-colonist pawns/animals is not guaranteed to work properly and may clash with the default medicine preferences for the relevant categories.
 
-The self-tend icon is used with permission from Jaxe's highly recommended RimHUD mod.</description>
+The self-tend icon is used with permission from Jaxe's highly recommended RimHUD mod.
+
+Source Code: https://github.com/roddyrap/rimworld-advanced-medicine-policies</description>
 </ModMetaData>
