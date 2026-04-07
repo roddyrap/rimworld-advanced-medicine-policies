@@ -327,21 +327,30 @@ public class Dialog_AdvancedMedicinePolicies : Window
 [HarmonyPatch(typeof(MainTabWindow_PawnTable), nameof(MainTabWindow_PawnTable.DoWindowContents))]
 public static class Patch_MainTabWindow_Assign_DoWindowContents
 {
-    public static void Postfix(MainTabWindow_PawnTable __instance, Rect rect)
-    {
-        if (__instance is not MainTabWindow_Assign) return;
+    static readonly int MEDICINE_POLICIES_TAB_BASE_WARNING_ID = "AdvancedMedicinePolicies.Patch_MainTabWindow_Assign_DoWindowContents".GetHashCode();
 
-        var table = Traverse.Create(__instance).Field("table").GetValue();
-        if (table is null) return;
+    // Assumes input is assign table.
+    public static Vector2? GetMedicineColumnTopLeft(MainTabWindow_PawnTable instance, Rect windowRect)
+    {
+        var table = Traverse.Create(instance).Field("table").GetValue();
+        if (table is null)
+        {
+            Log.WarningOnce("Failed to get assign tab pawn table attribute", MEDICINE_POLICIES_TAB_BASE_WARNING_ID);
+            return null;
+        }
 
         var tableProps = Traverse.Create(table);
         var cachedWidths = tableProps.Field<List<float>>("cachedColumnWidths").Value;
         
         var columns = tableProps.Field("def").Field<IList>("columns").Value;
 
-        if (cachedWidths is null || columns is null || columns.Count != cachedWidths.Count) return;
+        if (cachedWidths is null || columns is null || columns.Count != cachedWidths.Count)
+        {
+            Log.WarningOnce($"Failed to get assign tab table properties: {cachedWidths}, {columns}", MEDICINE_POLICIES_TAB_BASE_WARNING_ID);
+            return null;
+        }
 
-        float exactX = rect.x;
+        float exactX = windowRect.x;
         float exactWidth = 0f;
 
         for (int i = 0; i < columns.Count; i++)
@@ -355,9 +364,28 @@ public static class Patch_MainTabWindow_Assign_DoWindowContents
         }
 
         // If I didn't find the MedicalCare column then don't draw the button.
-        if (exactWidth == 0f) return;
+        if (exactWidth == 0f)
+        {
+            Log.WarningOnce("Invalid medicine column width in assign tab", MEDICINE_POLICIES_TAB_BASE_WARNING_ID);
+            return null;
+        }
 
-        Rect buttonRect = new(exactX, 0f, exactWidth, 33f);
+        return new Vector2(exactX, exactWidth);
+    }
+
+    public static void Postfix(MainTabWindow_PawnTable __instance, Rect rect)
+    {
+        if (__instance is not MainTabWindow_Assign) return;
+
+        Rect buttonRect = new(0f, 0f, 56f, 33f);
+        Vector2? medicineColumnTopLeft = GetMedicineColumnTopLeft(__instance, rect);
+        if (medicineColumnTopLeft.HasValue)
+        {
+            // TODO: DEBUG LOG.
+            Log.Message($"Medicine column sizes: {medicineColumnTopLeft}");
+            buttonRect = new(medicineColumnTopLeft.Value.x, 0f, medicineColumnTopLeft.Value.y, 33f);
+        }
+
         if (Widgets.ButtonImageWithBG(buttonRect, Textures.modPoliciesActive, Vector2.one * 24))
         {
             Find.WindowStack.Add(new Dialog_AdvancedMedicinePolicies());
