@@ -381,8 +381,6 @@ public static class Patch_MainTabWindow_Assign_DoWindowContents
         Vector2? medicineColumnTopLeft = GetMedicineColumnTopLeft(__instance, rect);
         if (medicineColumnTopLeft.HasValue)
         {
-            // TODO: DEBUG LOG.
-            Log.Message($"Medicine column sizes: {medicineColumnTopLeft}");
             buttonRect = new(medicineColumnTopLeft.Value.x, 0f, medicineColumnTopLeft.Value.y, 33f);
         }
 

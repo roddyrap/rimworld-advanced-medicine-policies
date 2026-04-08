@@ -29,6 +29,13 @@ public static class ModTextureFinder
 }
 
 [StaticConstructorOnStartup]
+public static class Textures
+{
+    public static readonly Texture2D modPoliciesActive = ModTextureFinder.GetMod("Icons/ModManaged");
+    public static readonly Texture2D modPoliciesInactive = ModTextureFinder.GetMod("Icons/NotModManaged");
+}
+
+[StaticConstructorOnStartup]
 public static class IconTextures
 {
     public static readonly Texture2D IconBleeding = ModTextureFinder.Get("UI/Icons/Medical/Bleeding");

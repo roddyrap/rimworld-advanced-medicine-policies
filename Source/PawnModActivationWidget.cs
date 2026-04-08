@@ -6,14 +6,6 @@ using HarmonyLib;
 
 namespace AdvancedMedicinePolicies;
 
-// TODO: Is there no better way than the static c'tor? Seems kinda weird.
-[StaticConstructorOnStartup]
-public static class Textures
-{
-    public static readonly Texture2D modPoliciesActive = ModTextureFinder.GetMod("Icons/ModManaged");
-    public static readonly Texture2D modPoliciesInactive = ModTextureFinder.GetMod("Icons/NotModManaged");
-}
-
 [HarmonyPatch(typeof(PawnColumnWorker_MedicalCare), nameof(PawnColumnWorker_MedicalCare.DoCell))]
 public static class Patch_PawnColumnWorker_MedicalCare_DoCell
 {

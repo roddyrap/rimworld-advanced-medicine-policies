@@ -143,8 +143,6 @@ public class AdvancedMedicinePoliciesComponent : GameComponent
             unmanagedPawns ??= [];
 
             // Clean up any pawns that died/were destroyed since the last save.
-            // TODO: I probably also want this to run when saving (To reduce file size) and
-            //       periodically during runtime with the GC to reduce memory usage.
             unmanagedPawns.RemoveWhere(pawn => pawn == null || pawn.Destroyed);
         }
     }
