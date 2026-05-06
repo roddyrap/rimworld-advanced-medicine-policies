@@ -24,16 +24,16 @@ In any case, the mod will not allow for a medicine better than the pawn's restri
     public static void Prefix(ref Rect rect, out Rect __state)
     {
         /**
-            * I want to enlarge the medical care space for each pawn in order to add my button to
-            * it, but if I do that by just increasing the reported size then the medical care
-            * button is just drawn in the middle of the box, which causes a collision.
-            * 
-            * In order to avoid this I make the rectangle larger _but_ reduce its size before every
-            * call to the vanilla pawn column drawer, so that it would know it and keep drawing
-            * the medical care button to the left of the new box.
-            */
+         * I want to enlarge the medical care space for each pawn in order to add my button to
+         * it, but if I do that by just increasing the reported size then the medical care
+         * button is just drawn in the middle of the box, which causes a collision.
+         * 
+         * In order to avoid this I make the rectangle larger _but_ reduce its size before every
+         * call to the vanilla pawn column drawer, so that it would know it and keep drawing
+         * the medical care button to the left of the new box.
+         */
         __state = rect; 
-        rect.width -= PAWN_BUTTON_RESERVED_SPACE; 
+        rect.width -= PAWN_BUTTON_RESERVED_SPACE;
     }
 
     public static void Postfix(Pawn pawn, Rect __state)

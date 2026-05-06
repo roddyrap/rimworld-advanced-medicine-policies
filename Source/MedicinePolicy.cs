@@ -68,7 +68,7 @@ public class MedicinePolicy : IExposable
 
     public bool DoesPawnMatch(Pawn patient, Pawn healer)
     {
-        if (!pawnClasses.Contains(AllegianceResolver.GetPawnAllegiance(patient))) return false;
+        if (pawnClasses.Count > 0 && !pawnClasses.Contains(AllegianceResolver.GetPawnAllegiance(patient))) return false;
 
         if (pawnConditions.Count > 0)
         {
